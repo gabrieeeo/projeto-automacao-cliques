@@ -16,10 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Iniciar 'Menu'
+        // Iniciar 'Menu'
         Menu menu = new Menu();
 
-        //Registrar 'NativeHook'
+        // Registrar 'NativeHook'
         try {
             GlobalScreen.registerNativeHook();
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class Main {
         }
         GlobalScreen.addNativeKeyListener(new KeyboardController());
 
-        //Inicializar 'MouseController'
+        // Inicializar 'MouseController'
         try {
             mouseController = new MouseController();
         } catch (AWTException e) {
@@ -35,19 +35,28 @@ public class Main {
             return;
         }
 
-        //Agendar tarefa para ser executada a cada 1.5 segundos
+        // Agendar tarefa para ser executada a cada 1.5 segundos
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                //Executar cliques em determinada posição
+                // Executar cliques em determinada posição
                 try {
-                    mouseController.click(887, 700);
+                    /*Point ponto = MouseInfo.getPointerInfo().getLocation();
+
+                    int x = (int) ponto.getX();
+                    int y = (int) ponto.getY();
+
+                    System.out.println("Coordenadas: X=" + x + ", Y=" + y);*/
+                    //619 630
+                    //979 533
+                    Thread.sleep(3000);
+                    mouseController.click(619, 630);
                     Thread.sleep(500);
-                    mouseController.click(738, 600);
-                }catch (InterruptedException e) {
+                    mouseController.click(980, 533);
+                } catch (InterruptedException e) {
                     System.out.println("Thread error: " + e.getMessage());
                 }
             }
-        },0, 1500);
+        }, 0, 1500);
     }
 }
